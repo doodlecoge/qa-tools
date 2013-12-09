@@ -1,0 +1,3 @@
+#foreach($el in $set)
+    <b>$el</b>
+#end
