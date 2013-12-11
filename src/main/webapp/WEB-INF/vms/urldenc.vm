@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Url Decoder/Encoder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div style="padding: 10px">
+    <h3>Url Decoder/Encoder:</h3>
+
+    <p class="msg" style="color: #f33; font-weight: bold;"></p>
+
+    <p>
+        <textarea id="urlsrc" style="min-width:600px; width: 60%; height: 300px;"></textarea>
+    </p>
+
+    <p>
+        <input type="button" value="Decode" onclick="decode()"/>
+        <input type="button" value="Encode" onclick="encode()"/>
+    </p>
+</div>
+
+<script language="javascript">
+
+    function encode() {
+        var obj = document.getElementById('urlsrc');
+        var unencoded = obj.value;
+        obj.value = encodeURIComponent(unencoded).replace(/'/g,"%27").replace(/"/g,"%22");
+    }
+
+    function decode() {
+        var obj = document.getElementById('urlsrc');
+        var encoded = obj.value;
+        obj.value = decodeURIComponent(encoded.replace(/\+/g,  " "));
+    }
+
+</script>
+
+</body>
+</html>
+

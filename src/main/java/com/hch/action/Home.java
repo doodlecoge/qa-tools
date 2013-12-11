@@ -1,4 +1,4 @@
-package com.hch;
+package com.hch.action;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
