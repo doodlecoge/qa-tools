@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PlantUml</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div style="padding: 10px">
+    <h3>PlantUml Generator:</h3>
+
+    <p class="msg" style="color: #f33; font-weight: bold;"></p>
+
+    <p>
+        <textarea id="plantumlsrc" style="min-width:600px; width: 60%; height: 300px;">@startuml
+Bob -> Alice : hello
+@enduml</textarea>
+    </p>
+
+    <p>
+        <input type="button" value="Build" onclick="build()"/>
+    </p>
+    
+    <p>
+        
+    </p>
+</div>
+
+<script language="javascript">
+    function build() {
+        var src = $('#plantumlsrc').val();
+        var xhr = $.ajax({
+            type: 'POST',
+            url: 'plantuml/post',
+            data: {source: src}
+        });
+
+        xhr.done(function(result) {
+            console.log(result);
+            $("p:last").html('<img src="data:image/png;base64,' + result + '" />');
+        });
+    }
+</script>
+
+</body>
+</html>
+

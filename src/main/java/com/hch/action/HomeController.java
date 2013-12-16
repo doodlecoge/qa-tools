@@ -17,7 +17,7 @@ import java.util.HashSet;
 
 @Controller
 @RequestMapping("/")
-public class Home {
+public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap map) {
         map.addAttribute("a", "b");
