@@ -29,9 +29,10 @@ public class PlantUmlController {
     @ResponseBody
     @RequestMapping(value = "post", method = RequestMethod.POST)
     public String post(String source) {
+        String fn = DateUtils.formatDate(Calendar.getInstance().getTime(), "yyyyMMddHHmmssSSS");
+        File file = null;
         try {
-            String fn = DateUtils.formatDate(Calendar.getInstance().getTime(), "yyyyMMddHHmmssSSS");
-            File file = File.createTempFile(fn, ".txt");
+            file = File.createTempFile(fn, ".txt");
             OutputStream png = new FileOutputStream(file);
 
             SourceStringReader reader = new SourceStringReader(source);
@@ -43,12 +44,12 @@ public class PlantUmlController {
                 throw new QaToolsException("no generation");
             } else {
                 String en = file2b64(file);
-                file.delete();
                 return en;
             }
         } catch (Exception e) {
             return "ERR";
         } finally {
+            if (file != null) file.delete();
         }
     }
 
